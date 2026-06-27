@@ -73,9 +73,15 @@ function CelebrationRequestsPage() {
 
   const counts = useMemo(() => {
     const c: Record<Status | "Total", number> = {
-      Total: rows.length, Pending: 0, Contacted: 0, Accepted: 0, Rejected: 0,
+      Total: rows.length,
+      Pending: 0,
+      Contacted: 0,
+      Accepted: 0,
+      Rejected: 0,
     };
-    rows.forEach((r) => { c[r.status] += 1; });
+    rows.forEach((r) => {
+      c[r.status] += 1;
+    });
     return c;
   }, [rows]);
 
@@ -88,9 +94,15 @@ function CelebrationRequestsPage() {
               <PartyPopper className="h-5 w-5 text-[var(--chocolate)]" />
             </span>
             <div className="min-w-0">
-              <div className="text-[11px] uppercase tracking-[0.2em] text-[var(--chocolate)]/70">Event Bookings</div>
-              <h2 className="font-display text-2xl font-bold text-[var(--chocolate)]">Celebration Requests</h2>
-              <p className="text-sm text-[var(--chocolate)]/70 mt-1">Plan birthdays, anniversaries, and special events.</p>
+              <div className="text-[11px] uppercase tracking-[0.2em] text-[var(--chocolate)]/70">
+                Event Bookings
+              </div>
+              <h2 className="font-display text-2xl font-bold text-[var(--chocolate)]">
+                Celebration Requests
+              </h2>
+              <p className="text-sm text-[var(--chocolate)]/70 mt-1">
+                Plan birthdays, anniversaries, and special events.
+              </p>
             </div>
           </div>
           <Button variant="outline" size="sm" onClick={load} disabled={loading}>
@@ -106,11 +118,16 @@ function CelebrationRequestsPage() {
               onClick={() => setStatusFilter(k === "Total" ? "All" : (k as Status))}
               className={cn(
                 "rounded-2xl bg-background/70 border border-border/60 px-4 py-3 text-left transition hover:border-[var(--gold)]/60",
-                ((k === "Total" && statusFilter === "All") || statusFilter === k) && "border-[var(--gold)] bg-[var(--gold)]/10",
+                ((k === "Total" && statusFilter === "All") || statusFilter === k) &&
+                  "border-[var(--gold)] bg-[var(--gold)]/10",
               )}
             >
-              <div className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">{k}</div>
-              <div className="font-display text-2xl font-bold text-[var(--chocolate)] mt-1">{counts[k]}</div>
+              <div className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
+                {k}
+              </div>
+              <div className="font-display text-2xl font-bold text-[var(--chocolate)] mt-1">
+                {counts[k]}
+              </div>
             </button>
           ))}
         </div>
@@ -140,7 +157,9 @@ function CelebrationRequestsPage() {
           <div className="py-20 text-center">
             <PartyPopper className="h-10 w-10 mx-auto text-[var(--chocolate)]/40" />
             <p className="mt-3 text-sm text-muted-foreground">
-              {rows.length === 0 ? "No celebration requests yet." : "No requests match your filters."}
+              {rows.length === 0
+                ? "No celebration requests yet."
+                : "No requests match your filters."}
             </p>
           </div>
         ) : (
@@ -153,10 +172,19 @@ function CelebrationRequestsPage() {
                       <h3 className="font-display text-lg font-semibold text-[var(--chocolate)] truncate">
                         {r.customer_name}
                       </h3>
-                      <Badge variant="outline" className={cn("rounded-full text-[11px] font-medium", STATUS_STYLES[r.status])}>
+                      <Badge
+                        variant="outline"
+                        className={cn(
+                          "rounded-full text-[11px] font-medium",
+                          STATUS_STYLES[r.status],
+                        )}
+                      >
                         {r.status}
                       </Badge>
-                      <Badge variant="outline" className="rounded-full text-[11px] bg-[var(--peach)]/20 text-[var(--chocolate)] border-[var(--peach)]/40">
+                      <Badge
+                        variant="outline"
+                        className="rounded-full text-[11px] bg-[var(--peach)]/20 text-[var(--chocolate)] border-[var(--peach)]/40"
+                      >
                         {r.event_type}
                       </Badge>
                       <span className="text-[11px] text-muted-foreground">
@@ -166,12 +194,18 @@ function CelebrationRequestsPage() {
                     <div className="flex flex-wrap gap-x-5 gap-y-1 text-sm text-[var(--chocolate)]/80">
                       <span className="inline-flex items-center gap-1.5">
                         <Phone className="h-3.5 w-3.5 text-[var(--gold)]" />
-                        <a href={`tel:${r.phone_number}`} className="hover:underline">{r.phone_number}</a>
+                        <a href={`tel:${r.phone_number}`} className="hover:underline">
+                          {r.phone_number}
+                        </a>
                       </span>
                       <span className="inline-flex items-center gap-1.5">
                         <CalendarDays className="h-3.5 w-3.5 text-[var(--gold)]" />
                         {r.event_date
-                          ? new Date(r.event_date).toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" })
+                          ? new Date(r.event_date).toLocaleDateString(undefined, {
+                              year: "numeric",
+                              month: "short",
+                              day: "numeric",
+                            })
                           : "No date specified"}
                       </span>
                       {r.guest_count != null && (
@@ -197,12 +231,22 @@ function CelebrationRequestsPage() {
                         onClick={() => updateStatus(r.id, s)}
                         className={cn(
                           "rounded-full",
-                          r.status === s && s === "Contacted" && "bg-blue-600 hover:bg-blue-600/90 text-white",
-                          r.status === s && s === "Accepted" && "bg-emerald-600 hover:bg-emerald-600/90 text-white",
-                          r.status === s && s === "Rejected" && "bg-rose-600 hover:bg-rose-600/90 text-white",
+                          r.status === s &&
+                            s === "Contacted" &&
+                            "bg-blue-600 hover:bg-blue-600/90 text-white",
+                          r.status === s &&
+                            s === "Accepted" &&
+                            "bg-emerald-600 hover:bg-emerald-600/90 text-white",
+                          r.status === s &&
+                            s === "Rejected" &&
+                            "bg-rose-600 hover:bg-rose-600/90 text-white",
                         )}
                       >
-                        {updatingId === r.id ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : `Mark ${s}`}
+                        {updatingId === r.id ? (
+                          <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                        ) : (
+                          `Mark ${s}`
+                        )}
                       </Button>
                     ))}
                   </div>

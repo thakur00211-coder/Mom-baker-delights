@@ -11,7 +11,7 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
-import { reportLovableError } from "../lib/lovable-error-reporting";
+import { reportError } from "../lib/lovable-error-reporting";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { OfferBar } from "@/components/site/OfferBar";
@@ -43,7 +43,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   console.error(error);
   const router = useRouter();
   useEffect(() => {
-    reportLovableError(error, { boundary: "tanstack_root_error_component" });
+    reportError(error, { boundary: "tanstack_root_error_component" });
   }, [error]);
 
   return (
@@ -83,22 +83,45 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Mom Bakers — Celebration Café & Custom Cake Studio" },
-      { name: "description", content: "Where every celebration begins with something sweet. Custom cakes, cozy moments, and memorable celebrations in Taragarh, Punjab." },
+      {
+        name: "description",
+        content:
+          "Where every celebration begins with something sweet. Custom cakes, cozy moments, and memorable celebrations in Taragarh, Punjab.",
+      },
       { name: "author", content: "Mom Bakers" },
       { property: "og:title", content: "Mom Bakers — Celebration Café & Custom Cake Studio" },
-      { property: "og:description", content: "Where every celebration begins with something sweet. Custom cakes, cozy moments, and memorable celebrations in Taragarh, Punjab." },
+      {
+        property: "og:description",
+        content:
+          "Where every celebration begins with something sweet. Custom cakes, cozy moments, and memorable celebrations in Taragarh, Punjab.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:site", content: "@MomBakers" },
       { name: "twitter:title", content: "Mom Bakers — Celebration Café & Custom Cake Studio" },
-      { name: "twitter:description", content: "Where every celebration begins with something sweet. Custom cakes, cozy moments, and memorable celebrations in Taragarh, Punjab." },
-      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/966347e7-4ad1-4ed6-a222-71895c031cf9" },
-      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/966347e7-4ad1-4ed6-a222-71895c031cf9" },
+      {
+        name: "twitter:description",
+        content:
+          "Where every celebration begins with something sweet. Custom cakes, cozy moments, and memorable celebrations in Taragarh, Punjab.",
+      },
+      {
+        property: "og:image",
+        content:
+          "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/966347e7-4ad1-4ed6-a222-71895c031cf9",
+      },
+      {
+        name: "twitter:image",
+        content:
+          "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/966347e7-4ad1-4ed6-a222-71895c031cf9",
+      },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap",
+      },
       {
         rel: "stylesheet",
         href: appCss,

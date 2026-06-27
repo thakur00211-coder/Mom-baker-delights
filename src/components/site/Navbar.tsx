@@ -55,7 +55,12 @@ export function Navbar() {
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
       </div>
-      <div className={cn("lg:hidden overflow-hidden transition-all duration-300", open ? "max-h-[500px]" : "max-h-0")}>
+      <div
+        className={cn(
+          "lg:hidden overflow-hidden transition-all duration-300",
+          open ? "max-h-[500px]" : "max-h-0",
+        )}
+      >
         <div className="px-4 pb-4 flex flex-col gap-1 bg-cream/90 border-t border-border/50">
           {links.map((l) => (
             <Link
