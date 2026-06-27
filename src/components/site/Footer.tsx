@@ -7,7 +7,7 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-4 gap-10">
         <div className="space-y-3">
           <div className="flex items-center gap-2">
-            <span className="h-9 w-9 rounded-full bg-gradient-to-br from-gold to-peach grid place-items-center">
+            <span className="h-9 w-9 rounded-full bg-linear-to-br from-gold to-peach grid place-items-center">
               <Cake className="h-5 w-5 text-chocolate" />
             </span>
             <span className="font-display text-xl font-bold text-cream">Mom Bakers</span>
