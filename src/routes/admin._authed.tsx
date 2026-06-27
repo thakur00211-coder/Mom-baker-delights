@@ -25,7 +25,15 @@ export const Route = createFileRoute("/admin/_authed")({
 });
 
 type NavItem = {
-  to: "/admin" | "/admin/cake-requests" | "/admin/celebration-requests" | "/admin/menu" | "/admin/gallery" | "/admin/offers" | "/admin/business-info" | "/admin/settings";
+  to:
+    | "/admin"
+    | "/admin/cake-requests"
+    | "/admin/celebration-requests"
+    | "/admin/menu"
+    | "/admin/gallery"
+    | "/admin/offers"
+    | "/admin/business-info"
+    | "/admin/settings";
   label: string;
   icon: typeof LayoutDashboard;
   badge?: number;
@@ -89,7 +97,8 @@ function AdminLayout() {
   }
 
   const activeLabel =
-    navItems.find((n) => (n.exact ? pathname === n.to : pathname.startsWith(n.to)))?.label ?? "Dashboard";
+    navItems.find((n) => (n.exact ? pathname === n.to : pathname.startsWith(n.to)))?.label ??
+    "Dashboard";
 
   return (
     <div className="min-h-screen bg-[oklch(0.97_0.015_75)] text-foreground">
@@ -102,14 +111,20 @@ function AdminLayout() {
                 <Cake className="h-5 w-5 text-[var(--chocolate)]" />
               </span>
               <div className="leading-tight min-w-0">
-                <div className="font-display text-base font-bold text-[var(--chocolate)] truncate">Mom Bakers</div>
-                <div className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground">Studio Admin</div>
+                <div className="font-display text-base font-bold text-[var(--chocolate)] truncate">
+                  Mom Bakers
+                </div>
+                <div className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+                  Studio Admin
+                </div>
               </div>
             </div>
           </div>
 
           <nav className="flex-1 px-3 py-5 space-y-1 overflow-y-auto">
-            <div className="px-3 pb-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground/80">Workspace</div>
+            <div className="px-3 pb-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground/80">
+              Workspace
+            </div>
             {navItems.map(({ to, label, icon: Icon, badge, exact }) => {
               const isActive = exact ? pathname === to : pathname.startsWith(to);
               return (
@@ -123,10 +138,14 @@ function AdminLayout() {
                       : "text-[var(--chocolate)]/75 hover:bg-[var(--peach)]/25 hover:text-[var(--chocolate)]",
                   )}
                 >
-                  <Icon className={cn("h-4.5 w-4.5 shrink-0", isActive ? "opacity-100" : "opacity-70")} />
+                  <Icon
+                    className={cn("h-4.5 w-4.5 shrink-0", isActive ? "opacity-100" : "opacity-70")}
+                  />
                   <span className="flex-1 text-left truncate">{label}</span>
                   {typeof badge === "number" && badge > 0 && (
-                    <Badge className="bg-[var(--gold)] text-[var(--chocolate)] hover:bg-[var(--gold)]">{badge}</Badge>
+                    <Badge className="bg-[var(--gold)] text-[var(--chocolate)] hover:bg-[var(--gold)]">
+                      {badge}
+                    </Badge>
                   )}
                 </Link>
               );
@@ -139,7 +158,9 @@ function AdminLayout() {
                 {(email ?? "A").slice(0, 1).toUpperCase()}
               </div>
               <div className="min-w-0 flex-1">
-                <div className="text-xs font-semibold text-[var(--chocolate)] truncate">{email ?? "Admin"}</div>
+                <div className="text-xs font-semibold text-[var(--chocolate)] truncate">
+                  {email ?? "Admin"}
+                </div>
                 <div className="text-[10px] text-muted-foreground">Owner</div>
               </div>
               <Button variant="ghost" size="icon" onClick={handleSignOut} aria-label="Sign out">
@@ -154,14 +175,22 @@ function AdminLayout() {
           <header className="sticky top-0 z-10 border-b border-border/60 bg-background/85 backdrop-blur">
             <div className="px-5 md:px-8 h-16 grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4">
               <div className="min-w-0">
-                <div className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground">Mom Bakers · Admin</div>
-                <h1 className="font-display text-lg sm:text-xl font-bold text-[var(--chocolate)] truncate">{activeLabel}</h1>
+                <div className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+                  Mom Bakers · Admin
+                </div>
+                <h1 className="font-display text-lg sm:text-xl font-bold text-[var(--chocolate)] truncate">
+                  {activeLabel}
+                </h1>
               </div>
               <div className="flex items-center gap-2 shrink-0">
                 <Button variant="outline" size="sm" className="hidden sm:inline-flex">
                   <Plus className="h-4 w-4 mr-1.5" /> New
                 </Button>
-                <Button size="sm" className="bg-[var(--chocolate)] text-[var(--cream)] hover:bg-[var(--chocolate)]/90" asChild>
+                <Button
+                  size="sm"
+                  className="bg-[var(--chocolate)] text-[var(--cream)] hover:bg-[var(--chocolate)]/90"
+                  asChild
+                >
                   <Link to="/">View Website</Link>
                 </Button>
               </div>
@@ -174,7 +203,9 @@ function AdminLayout() {
             {/* Mobile nav */}
             <section className="md:hidden">
               <Card className="p-4 rounded-2xl border-border/60">
-                <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">Navigate</div>
+                <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">
+                  Navigate
+                </div>
                 <div className="grid grid-cols-2 gap-2">
                   {navItems.map(({ to, label, icon: Icon, exact }) => {
                     const isActive = exact ? pathname === to : pathname.startsWith(to);

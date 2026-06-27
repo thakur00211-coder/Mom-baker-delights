@@ -23,10 +23,34 @@ export const Route = createFileRoute("/admin/_authed/")({
 });
 
 const stats = [
-  { label: "Total Cake Requests", value: "0", trend: "New inquiries", icon: Cake, accent: "from-peach/40 to-peach/10" },
-  { label: "Celebration Requests", value: "0", trend: "Event bookings", icon: PartyPopper, accent: "from-gold/40 to-gold/10" },
-  { label: "Menu Items", value: "0", trend: "Live on website", icon: UtensilsCrossed, accent: "from-chocolate/20 to-chocolate/5" },
-  { label: "Gallery Images", value: "0", trend: "Photos published", icon: Images, accent: "from-beige/50 to-beige/10" },
+  {
+    label: "Total Cake Requests",
+    value: "0",
+    trend: "New inquiries",
+    icon: Cake,
+    accent: "from-peach/40 to-peach/10",
+  },
+  {
+    label: "Celebration Requests",
+    value: "0",
+    trend: "Event bookings",
+    icon: PartyPopper,
+    accent: "from-gold/40 to-gold/10",
+  },
+  {
+    label: "Menu Items",
+    value: "0",
+    trend: "Live on website",
+    icon: UtensilsCrossed,
+    accent: "from-chocolate/20 to-chocolate/5",
+  },
+  {
+    label: "Gallery Images",
+    value: "0",
+    trend: "Photos published",
+    icon: Images,
+    accent: "from-beige/50 to-beige/10",
+  },
 ] as const;
 
 const quickActions = [
@@ -49,7 +73,9 @@ function DashboardOverview() {
         <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-[var(--gold)]/20 blur-3xl" />
         <div className="relative grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4">
           <div className="min-w-0">
-            <div className="text-xs uppercase tracking-[0.2em] text-[var(--chocolate)]/70">Good morning</div>
+            <div className="text-xs uppercase tracking-[0.2em] text-[var(--chocolate)]/70">
+              Good morning
+            </div>
             <h2 className="font-display text-2xl md:text-3xl font-bold text-[var(--chocolate)] mt-1">
               Welcome back, {email?.split("@")[0] ?? "Admin"} ✨
             </h2>
@@ -66,16 +92,26 @@ function DashboardOverview() {
       <section>
         <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
           {stats.map(({ label, value, trend, icon: Icon, accent }) => (
-            <Card key={label} className="p-5 rounded-2xl border-border/60 hover:shadow-[var(--shadow-soft)] transition-shadow">
+            <Card
+              key={label}
+              className="p-5 rounded-2xl border-border/60 hover:shadow-[var(--shadow-soft)] transition-shadow"
+            >
               <div className="flex items-start justify-between gap-3">
                 <div className="min-w-0">
                   <div className="text-xs font-medium text-muted-foreground">{label}</div>
-                  <div className="font-display text-3xl font-bold text-[var(--chocolate)] mt-2">{value}</div>
+                  <div className="font-display text-3xl font-bold text-[var(--chocolate)] mt-2">
+                    {value}
+                  </div>
                   <div className="flex items-center gap-1 mt-2 text-[11px] text-muted-foreground">
                     <TrendingUp className="h-3 w-3" /> {trend}
                   </div>
                 </div>
-                <span className={cn("h-11 w-11 rounded-xl grid place-items-center bg-gradient-to-br shrink-0", accent)}>
+                <span
+                  className={cn(
+                    "h-11 w-11 rounded-xl grid place-items-center bg-gradient-to-br shrink-0",
+                    accent,
+                  )}
+                >
                   <Icon className="h-5 w-5 text-[var(--chocolate)]" />
                 </span>
               </div>
@@ -88,8 +124,12 @@ function DashboardOverview() {
         <Card className="lg:col-span-2 rounded-2xl border-border/60 overflow-hidden">
           <div className="px-6 pt-6 pb-4 flex items-center justify-between gap-3 border-b border-border/60">
             <div>
-              <h3 className="font-display text-lg font-semibold text-[var(--chocolate)]">Recent Activity</h3>
-              <p className="text-xs text-muted-foreground mt-0.5">Latest requests and admin actions</p>
+              <h3 className="font-display text-lg font-semibold text-[var(--chocolate)]">
+                Recent Activity
+              </h3>
+              <p className="text-xs text-muted-foreground mt-0.5">
+                Latest requests and admin actions
+              </p>
             </div>
             <Button variant="ghost" size="sm" className="text-[var(--chocolate)]">
               View all <ChevronRight className="h-4 w-4 ml-1" />
@@ -98,7 +138,11 @@ function DashboardOverview() {
           <div className="divide-y divide-border/60">
             {[
               { title: "Latest Cake Requests", icon: Cake, empty: "No cake requests yet" },
-              { title: "Latest Celebration Requests", icon: PartyPopper, empty: "No celebration bookings yet" },
+              {
+                title: "Latest Celebration Requests",
+                icon: PartyPopper,
+                empty: "No celebration bookings yet",
+              },
               { title: "Recent Admin Actions", icon: Clock, empty: "No actions logged yet" },
             ].map(({ title, icon: Icon, empty }) => (
               <div key={title} className="px-6 py-5">
@@ -115,7 +159,9 @@ function DashboardOverview() {
         </Card>
 
         <Card className="rounded-2xl border-border/60 p-6">
-          <h3 className="font-display text-lg font-semibold text-[var(--chocolate)]">Quick Actions</h3>
+          <h3 className="font-display text-lg font-semibold text-[var(--chocolate)]">
+            Quick Actions
+          </h3>
           <p className="text-xs text-muted-foreground mt-0.5">Jump straight into common tasks</p>
           <div className="grid gap-2.5 mt-5">
             {quickActions.map(({ label, icon: Icon }) => (
@@ -126,7 +172,9 @@ function DashboardOverview() {
                 <span className="h-9 w-9 rounded-lg bg-gradient-to-br from-[var(--gold)]/30 to-[var(--peach)]/30 grid place-items-center shrink-0">
                   <Icon className="h-4 w-4 text-[var(--chocolate)]" />
                 </span>
-                <span className="text-sm font-medium text-[var(--chocolate)] flex-1 truncate">{label}</span>
+                <span className="text-sm font-medium text-[var(--chocolate)] flex-1 truncate">
+                  {label}
+                </span>
                 <ChevronRight className="h-4 w-4 text-muted-foreground group-hover:translate-x-0.5 transition-transform" />
               </button>
             ))}

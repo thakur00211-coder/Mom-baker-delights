@@ -1,6 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
-import { Cake, Search, Phone, CalendarDays, Image as ImageIcon, Loader2, RefreshCw, ExternalLink } from "lucide-react";
+import {
+  Cake,
+  Search,
+  Phone,
+  CalendarDays,
+  Image as ImageIcon,
+  Loader2,
+  RefreshCw,
+  ExternalLink,
+} from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -77,9 +86,7 @@ function CakeRequestsPage() {
     const q = search.trim().toLowerCase();
     if (!q) return rows;
     return rows.filter(
-      (r) =>
-        r.customer_name.toLowerCase().includes(q) ||
-        r.phone_number.toLowerCase().includes(q),
+      (r) => r.customer_name.toLowerCase().includes(q) || r.phone_number.toLowerCase().includes(q),
     );
   }, [rows, search]);
 
@@ -106,9 +113,15 @@ function CakeRequestsPage() {
               <Cake className="h-5 w-5 text-[var(--chocolate)]" />
             </span>
             <div className="min-w-0">
-              <div className="text-[11px] uppercase tracking-[0.2em] text-[var(--chocolate)]/70">Custom Orders</div>
-              <h2 className="font-display text-2xl font-bold text-[var(--chocolate)]">Cake Requests</h2>
-              <p className="text-sm text-[var(--chocolate)]/70 mt-1">Review and respond to incoming custom cake inquiries.</p>
+              <div className="text-[11px] uppercase tracking-[0.2em] text-[var(--chocolate)]/70">
+                Custom Orders
+              </div>
+              <h2 className="font-display text-2xl font-bold text-[var(--chocolate)]">
+                Cake Requests
+              </h2>
+              <p className="text-sm text-[var(--chocolate)]/70 mt-1">
+                Review and respond to incoming custom cake inquiries.
+              </p>
             </div>
           </div>
           <Button variant="outline" size="sm" onClick={load} disabled={loading}>
@@ -119,8 +132,12 @@ function CakeRequestsPage() {
         <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mt-6">
           {(["Total", "Pending", "Contacted", "Accepted", "Rejected"] as const).map((k) => (
             <div key={k} className="rounded-2xl bg-background/70 border border-border/60 px-4 py-3">
-              <div className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">{k}</div>
-              <div className="font-display text-2xl font-bold text-[var(--chocolate)] mt-1">{counts[k]}</div>
+              <div className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
+                {k}
+              </div>
+              <div className="font-display text-2xl font-bold text-[var(--chocolate)] mt-1">
+                {counts[k]}
+              </div>
             </div>
           ))}
         </div>
@@ -163,7 +180,13 @@ function CakeRequestsPage() {
                       <h3 className="font-display text-lg font-semibold text-[var(--chocolate)] truncate">
                         {r.customer_name}
                       </h3>
-                      <Badge variant="outline" className={cn("rounded-full text-[11px] font-medium", STATUS_STYLES[r.status])}>
+                      <Badge
+                        variant="outline"
+                        className={cn(
+                          "rounded-full text-[11px] font-medium",
+                          STATUS_STYLES[r.status],
+                        )}
+                      >
                         {r.status}
                       </Badge>
                       <span className="text-[11px] text-muted-foreground">
@@ -214,12 +237,22 @@ function CakeRequestsPage() {
                         onClick={() => updateStatus(r.id, s)}
                         className={cn(
                           "rounded-full",
-                          r.status === s && s === "Contacted" && "bg-blue-600 hover:bg-blue-600/90 text-white",
-                          r.status === s && s === "Accepted" && "bg-emerald-600 hover:bg-emerald-600/90 text-white",
-                          r.status === s && s === "Rejected" && "bg-rose-600 hover:bg-rose-600/90 text-white",
+                          r.status === s &&
+                            s === "Contacted" &&
+                            "bg-blue-600 hover:bg-blue-600/90 text-white",
+                          r.status === s &&
+                            s === "Accepted" &&
+                            "bg-emerald-600 hover:bg-emerald-600/90 text-white",
+                          r.status === s &&
+                            s === "Rejected" &&
+                            "bg-rose-600 hover:bg-rose-600/90 text-white",
                         )}
                       >
-                        {updatingId === r.id ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : `Mark ${s}`}
+                        {updatingId === r.id ? (
+                          <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                        ) : (
+                          `Mark ${s}`
+                        )}
                       </Button>
                     ))}
                   </div>

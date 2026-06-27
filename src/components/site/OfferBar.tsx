@@ -17,7 +17,9 @@ export function OfferBar() {
     <div className="bg-chocolate text-cream text-xs sm:text-sm py-2 px-4 text-center font-medium tracking-wide">
       <span className="inline-flex items-center gap-2">
         <Sparkles className="h-3.5 w-3.5 text-gold" />
-        <span key={i} className="animate-fade-up">{offers[i]}</span>
+        <span key={i} className="animate-fade-up">
+          {offers[i]}
+        </span>
       </span>
     </div>
   );
