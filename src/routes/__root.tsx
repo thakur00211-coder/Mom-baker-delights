@@ -11,7 +11,9 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
-import { reportError } from "../lib/lovable-error-reporting";
+const reportError = (error: Error) => {
+  console.error(error);
+};
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { OfferBar } from "@/components/site/OfferBar";
