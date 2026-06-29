@@ -1,6 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Heart, Sparkles, Star, Phone, MapPin, Clock } from "lucide-react";
-import hero from "@/assets/hero.jpg";
 import customCake from "@/assets/custom-cake.jpg";
 import celebration from "@/assets/celebration.jpg";
 import interior from "@/assets/interior.jpg";
@@ -9,6 +8,7 @@ import cafe from "@/assets/cafe.jpg";
 import { menuItems } from "@/lib/menu-data";
 import { HeroSection } from "@/components/home/HeroSection";
 import { WhyMomBakersSection } from "@/components/home/WhyMomBakersSection";
+import { FeaturedMenuSection } from "@/components/home/FeaturedMenuSection";
 
 export const Route = createFileRoute("/")({
   head: () => ({
