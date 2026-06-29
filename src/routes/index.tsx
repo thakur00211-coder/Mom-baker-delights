@@ -1,17 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import {
-  ArrowRight,
-  Cake,
-  Coffee,
-  Heart,
-  Sparkles,
-  Star,
-  Users,
-  Utensils,
-  Phone,
-  MapPin,
-  Clock,
-} from "lucide-react";
+import { ArrowRight, Heart, Sparkles, Star, Phone, MapPin, Clock } from "lucide-react";
 import hero from "@/assets/hero.jpg";
 import customCake from "@/assets/custom-cake.jpg";
 import celebration from "@/assets/celebration.jpg";
@@ -20,6 +8,7 @@ import pastries from "@/assets/pastries.jpg";
 import cafe from "@/assets/cafe.jpg";
 import { menuItems } from "@/lib/menu-data";
 import { HeroSection } from "@/components/home/HeroSection";
+import { WhyMomBakersSection } from "@/components/home/WhyMomBakersSection";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -39,34 +28,6 @@ export const Route = createFileRoute("/")({
   }),
   component: Index,
 });
-
-const whys = [
-  {
-    icon: Cake,
-    title: "Premium Custom Cakes",
-    desc: "Hand-crafted designs for every milestone — birthdays, anniversaries, weddings.",
-  },
-  {
-    icon: Sparkles,
-    title: "Celebration Events",
-    desc: "We turn your moments into memories with curated celebration packages.",
-  },
-  {
-    icon: Coffee,
-    title: "Cozy Café Experience",
-    desc: "A warm, intimate space designed for conversations that linger.",
-  },
-  {
-    icon: Utensils,
-    title: "Freshly Prepared Food",
-    desc: "Pastries, cafe specials and beverages made fresh, every single day.",
-  },
-  {
-    icon: Users,
-    title: "Family Friendly",
-    desc: "A welcoming home for students, families and everyone in between.",
-  },
-];
 
 const events = [
   { icon: "🎂", title: "Birthday Parties", desc: "Make their day unforgettable" },
@@ -108,83 +69,8 @@ function Index() {
 
   return (
     <>
-      {/* HERO */}
-
-      {/* WHY MOM BAKERS */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0">
-          <img
-            src={hero}
-            alt=""
-            width={1920}
-            height={1080}
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-linear-to-b from-chocolate/30 via-chocolate/50 to-chocolate/85" />
-        </div>
-        <div className="relative max-w-7xl mx-auto px-6 py-28 sm:py-40 lg:py-52 text-center">
-          <span className="inline-flex items-center gap-2 glass-card px-4 py-1.5 rounded-full text-xs font-medium text-chocolate mb-6 animate-fade-up">
-            <Sparkles className="h-3.5 w-3.5 text-gold" />
-            Celebration Café & Custom Cake Studio
-          </span>
-          <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-bold text-cream leading-[1.05] max-w-4xl mx-auto animate-fade-up">
-            Where Every Celebration Begins
-            <span className="block gold-text italic">With Something Sweet</span>
-          </h1>
-          <p className="mt-6 text-cream/85 text-base sm:text-lg max-w-2xl mx-auto animate-fade-up">
-            Custom cakes, cozy moments & memorable celebrations — handcrafted with love in the heart
-            of Taragarh.
-          </p>
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-3 animate-fade-up">
-            <Link
-              to="/customize"
-              className="inline-flex items-center gap-2 bg-gold text-chocolate px-7 py-3.5 rounded-full font-medium shadow-[var(--shadow-glow)] hover:scale-105 transition"
-            >
-              Customize Your Cake <ArrowRight className="h-4 w-4" />
-            </Link>
-            <Link
-              to="/celebrate"
-              className="inline-flex items-center gap-2 glass-card !bg-cream/15 text-cream border-cream/30 px-7 py-3.5 rounded-full font-medium hover:bg-cream/25 transition"
-            >
-              Plan Your Celebration
-            </Link>
-            <Link
-              to="/menu"
-              className="inline-flex items-center gap-2 text-cream/90 px-5 py-3.5 rounded-full font-medium hover:text-gold transition"
-            >
-              Explore Menu →
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* WHY MOM BAKERS */}
-      <section className="max-w-7xl mx-auto px-6 py-20 sm:py-28">
-        <div className="text-center max-w-2xl mx-auto mb-14">
-          <p className="text-xs uppercase tracking-[0.3em] text-gold font-medium mb-3">
-            Why Mom Bakers
-          </p>
-          <h2 className="font-display text-3xl sm:text-5xl text-chocolate font-bold">
-            More than a café — a celebration destination
-          </h2>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
-          {whys.map((w) => (
-            <div
-              key={w.title}
-              className="bg-card rounded-3xl p-6 border border-border/60 hover:shadow-(--shadow-elegant) hover:-translate-y-1 transition-all duration-300"
-            >
-              <div className="h-12 w-12 rounded-2xl bg-linear-to-br from-peach to-gold/70 grid place-items-center mb-4">
-                <w.icon className="h-6 w-6 text-chocolate" />
-              </div>
-              <h3 className="font-display text-lg font-semibold text-chocolate mb-1.5">
-                {w.title}
-              </h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">{w.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <HeroSection />
+      <WhyMomBakersSection />
 
       {/* FEATURED MENU */}
       <section className="bg-gradient-to-b from-cream to-peach/20 py-20 sm:py-28">
