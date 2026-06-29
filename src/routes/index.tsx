@@ -19,6 +19,7 @@ import interior from "@/assets/interior.jpg";
 import pastries from "@/assets/pastries.jpg";
 import cafe from "@/assets/cafe.jpg";
 import { menuItems } from "@/lib/menu-data";
+import { HeroSection } from "@/components/home/HeroSection";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -108,6 +109,8 @@ function Index() {
   return (
     <>
       {/* HERO */}
+
+      {/* WHY MOM BAKERS */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0">
           <img
