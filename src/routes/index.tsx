@@ -1,14 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Heart, Sparkles, Star, Phone, MapPin, Clock } from "lucide-react";
+import { ArrowRight, Star, Phone, MapPin, Clock } from "lucide-react";
 import customCake from "@/assets/custom-cake.jpg";
 import celebration from "@/assets/celebration.jpg";
 import interior from "@/assets/interior.jpg";
 import pastries from "@/assets/pastries.jpg";
-import cafe from "@/assets/cafe.jpg";
-import { menuItems } from "@/lib/menu-data";
 import { HeroSection } from "@/components/home/HeroSection";
 import { WhyMomBakersSection } from "@/components/home/WhyMomBakersSection";
 import { FeaturedMenuSection } from "@/components/home/FeaturedMenuSection";
+import { CustomizeCakeSection } from "@/components/home/CustomizeCakeSection";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -65,131 +64,12 @@ const reviews = [
 ];
 
 function Index() {
-  const featured = menuItems.filter((m) => m.featured).slice(0, 8);
-
   return (
     <>
       <HeroSection />
       <WhyMomBakersSection />
-
-      {/* FEATURED MENU */}
-      <section className="bg-gradient-to-b from-cream to-peach/20 py-20 sm:py-28">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex items-end justify-between flex-wrap gap-4 mb-12">
-            <div>
-              <p className="text-xs uppercase tracking-[0.3em] text-gold font-medium mb-3">
-                Featured Menu
-              </p>
-              <h2 className="font-display text-3xl sm:text-5xl text-chocolate font-bold max-w-xl">
-                Tastes our guests come back for
-              </h2>
-            </div>
-            <Link
-              to="/menu"
-              className="text-chocolate font-medium hover:text-gold inline-flex items-center gap-1"
-            >
-              View Full Menu <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {featured.map((item) => (
-              <div
-                key={item.id}
-                className="group bg-card rounded-3xl overflow-hidden border border-border/60 hover:shadow-[var(--shadow-elegant)] transition-all"
-              >
-                <div className="aspect-[4/3] overflow-hidden bg-muted">
-                  <img
-                    src={
-                      item.category === "Cakes"
-                        ? customCake
-                        : item.category.includes("Beverage")
-                          ? cafe
-                          : pastries
-                    }
-                    alt={item.name}
-                    loading="lazy"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  />
-                </div>
-                <div className="p-5">
-                  <div className="flex items-center justify-between mb-1.5">
-                    <span className="text-[10px] uppercase tracking-widest text-gold font-semibold">
-                      {item.category}
-                    </span>
-                    {item.tag && (
-                      <span className="text-[10px] bg-peach/40 text-chocolate px-2 py-0.5 rounded-full font-medium">
-                        {item.tag}
-                      </span>
-                    )}
-                  </div>
-                  <h3 className="font-display text-lg font-semibold text-chocolate leading-tight">
-                    {item.name}
-                  </h3>
-                  <p className="text-sm text-muted-foreground mt-1 line-clamp-2">
-                    {item.description}
-                  </p>
-                  <p className="mt-3 font-medium text-chocolate">₹{item.price}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CUSTOMIZE YOUR CAKE */}
-      <section className="max-w-7xl mx-auto px-6 py-20 sm:py-28">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div className="relative">
-            <div className="absolute -inset-6 bg-gradient-to-br from-gold/30 to-peach/30 rounded-[2.5rem] blur-2xl" />
-            <img
-              src={customCake}
-              alt="Custom celebration cake"
-              loading="lazy"
-              className="relative rounded-[2rem] shadow-[var(--shadow-elegant)] w-full"
-            />
-            <div className="absolute -bottom-6 -right-6 glass-card rounded-2xl p-4 hidden sm:flex items-center gap-3">
-              <Heart className="h-5 w-5 text-gold fill-gold" />
-              <div className="text-xs">
-                <div className="font-semibold text-chocolate">2,500+ cakes</div>
-                <div className="text-muted-foreground">crafted with love</div>
-              </div>
-            </div>
-          </div>
-          <div>
-            <p className="text-xs uppercase tracking-[0.3em] text-gold font-medium mb-3">
-              Customize Your Cake
-            </p>
-            <h2 className="font-display text-3xl sm:text-5xl text-chocolate font-bold leading-tight">
-              Design the cake of your dreams
-            </h2>
-            <p className="mt-5 text-muted-foreground text-base sm:text-lg leading-relaxed">
-              Share your vision and we'll craft a one-of-a-kind cake for birthdays, anniversaries,
-              and life's sweetest moments — from elegant single tiers to grand celebration
-              centerpieces.
-            </p>
-            <ul className="mt-6 space-y-3 text-sm text-chocolate/80">
-              <li className="flex gap-2">
-                <Sparkles className="h-4 w-4 text-gold mt-0.5" /> Hand-painted designs & edible gold
-                leaf
-              </li>
-              <li className="flex gap-2">
-                <Sparkles className="h-4 w-4 text-gold mt-0.5" /> Premium flavor combinations,
-                dietary options available
-              </li>
-              <li className="flex gap-2">
-                <Sparkles className="h-4 w-4 text-gold mt-0.5" /> Personal consultation with our
-                pastry team
-              </li>
-            </ul>
-            <Link
-              to="/customize"
-              className="mt-8 inline-flex items-center gap-2 bg-chocolate text-cream px-7 py-3.5 rounded-full font-medium hover:bg-chocolate/90 transition shadow-[var(--shadow-soft)]"
-            >
-              Customize Your Cake <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-        </div>
-      </section>
+      <FeaturedMenuSection />
+      <CustomizeCakeSection />
 
       {/* CELEBRATIONS */}
       <section className="relative py-20 sm:py-28 overflow-hidden">
