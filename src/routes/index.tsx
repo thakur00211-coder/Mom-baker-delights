@@ -9,6 +9,7 @@ import { WhyMomBakersSection } from "@/components/home/WhyMomBakersSection";
 import { FeaturedMenuSection } from "@/components/home/FeaturedMenuSection";
 import { CustomizeCakeSection } from "@/components/home/CustomizeCakeSection";
 import { CelebrationsSection } from "@/components/home/CelebrationsSection";
+import { GalleryPreviewSection } from "@/components/home/GalleryPreviewSection";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -72,47 +73,7 @@ function Index() {
       <FeaturedMenuSection />
       <CustomizeCakeSection />
       <CelebrationsSection />
-
-      {/* GALLERY PREVIEW */}
-      <section className="max-w-7xl mx-auto px-6 py-20 sm:py-28">
-        <div className="text-center max-w-2xl mx-auto mb-12">
-          <p className="text-xs uppercase tracking-[0.3em] text-gold font-medium mb-3">Gallery</p>
-          <h2 className="font-display text-3xl sm:text-5xl text-chocolate font-bold">
-            Moments worth savoring
-          </h2>
-        </div>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-          {galleryCats.map((g) => (
-            <Link
-              to="/gallery"
-              key={g.label}
-              className="group relative aspect-[3/4] rounded-2xl overflow-hidden"
-            >
-              <img
-                src={g.img}
-                alt={g.label}
-                loading="lazy"
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-chocolate/80 to-transparent" />
-              <div className="absolute bottom-4 left-4 right-4">
-                <div className="font-display text-xl text-cream">{g.label}</div>
-                <div className="text-xs text-cream/70 inline-flex items-center gap-1 mt-1">
-                  View collection <ArrowRight className="h-3 w-3" />
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
-        <div className="text-center mt-10">
-          <Link
-            to="/gallery"
-            className="inline-flex items-center gap-2 bg-chocolate text-cream px-7 py-3.5 rounded-full font-medium hover:bg-chocolate/90 transition"
-          >
-            View Full Gallery <ArrowRight className="h-4 w-4" />
-          </Link>
-        </div>
-      </section>
+      <GalleryPreviewSection />
 
       {/* REVIEWS */}
       <section className="bg-gradient-to-b from-peach/20 to-cream py-20 sm:py-28">
