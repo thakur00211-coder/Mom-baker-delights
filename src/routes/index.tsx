@@ -8,6 +8,7 @@ import { HeroSection } from "@/components/home/HeroSection";
 import { WhyMomBakersSection } from "@/components/home/WhyMomBakersSection";
 import { FeaturedMenuSection } from "@/components/home/FeaturedMenuSection";
 import { CustomizeCakeSection } from "@/components/home/CustomizeCakeSection";
+import { CelebrationsSection } from "@/components/home/CelebrationsSection";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -70,46 +71,7 @@ function Index() {
       <WhyMomBakersSection />
       <FeaturedMenuSection />
       <CustomizeCakeSection />
-
-      {/* CELEBRATIONS */}
-      <section className="relative py-20 sm:py-28 overflow-hidden">
-        <div className="absolute inset-0">
-          <img src={celebration} alt="" className="w-full h-full object-cover" loading="lazy" />
-          <div className="absolute inset-0 bg-gradient-to-r from-chocolate/95 via-chocolate/85 to-chocolate/70" />
-        </div>
-        <div className="relative max-w-7xl mx-auto px-6">
-          <div className="max-w-xl">
-            <p className="text-xs uppercase tracking-[0.3em] text-gold font-medium mb-3">
-              Celebrations
-            </p>
-            <h2 className="font-display text-3xl sm:text-5xl text-cream font-bold leading-tight">
-              Your moments, our craft
-            </h2>
-            <p className="mt-5 text-cream/80 text-base sm:text-lg leading-relaxed">
-              From intimate gatherings to grand celebrations, we host them all with warmth,
-              elegance, and effortless care.
-            </p>
-          </div>
-          <div className="mt-12 grid grid-cols-2 lg:grid-cols-4 gap-4">
-            {events.map((e) => (
-              <div
-                key={e.title}
-                className="glass-card !bg-cream/10 !border-cream/20 rounded-2xl p-6 text-cream hover:!bg-cream/20 transition"
-              >
-                <div className="text-3xl mb-3">{e.icon}</div>
-                <h3 className="font-display text-lg font-semibold">{e.title}</h3>
-                <p className="text-sm text-cream/70 mt-1">{e.desc}</p>
-              </div>
-            ))}
-          </div>
-          <Link
-            to="/celebrate"
-            className="mt-10 inline-flex items-center gap-2 bg-gold text-chocolate px-7 py-3.5 rounded-full font-medium hover:scale-105 transition shadow-[var(--shadow-glow)]"
-          >
-            Plan Your Celebration <ArrowRight className="h-4 w-4" />
-          </Link>
-        </div>
-      </section>
+      <CelebrationsSection />
 
       {/* GALLERY PREVIEW */}
       <section className="max-w-7xl mx-auto px-6 py-20 sm:py-28">
