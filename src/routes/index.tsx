@@ -11,6 +11,7 @@ import { CustomizeCakeSection } from "@/components/home/CustomizeCakeSection";
 import { CelebrationsSection } from "@/components/home/CelebrationsSection";
 import { GalleryPreviewSection } from "@/components/home/GalleryPreviewSection";
 import { ReviewsSection } from "@/components/home/ReviewsSection";
+import { ContactPreviewSection } from "@/components/home/ContactPreviewSection";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -32,7 +33,7 @@ export const Route = createFileRoute("/")({
 });
 
 const events = [
-  { icon: "🎂", title: "Birthday Parties", desc: "Make their day unforgettable" },
+  { icon: "🎂", title: "Birthday Parties", desc: "Make You'r day unforgettable" },
   { icon: "💐", title: "Anniversary", desc: "Celebrate years of togetherness" },
   { icon: "👨‍👩‍👧", title: "Family Gatherings", desc: "Cozy, intimate get-togethers" },
   { icon: "🎉", title: "Special Events", desc: "Custom-built for your occasion" },
@@ -76,66 +77,7 @@ function Index() {
       <CelebrationsSection />
       <GalleryPreviewSection />
       <ReviewsSection />
-      {/* CONTACT PREVIEW */}
-      <section className="max-w-7xl mx-auto px-6 py-20 sm:py-28">
-        <div className="bg-chocolate text-cream rounded-[2.5rem] p-10 sm:p-16 grid lg:grid-cols-2 gap-12 items-center relative overflow-hidden">
-          <div className="absolute -top-20 -right-20 h-72 w-72 bg-gold/20 rounded-full blur-3xl" />
-          <div className="relative">
-            <p className="text-xs uppercase tracking-[0.3em] text-gold font-medium mb-3">
-              Visit Us
-            </p>
-            <h2 className="font-display text-3xl sm:text-5xl font-bold leading-tight">
-              Come for the cake.
-              <br />
-              Stay for the warmth.
-            </h2>
-            <p className="mt-5 text-cream/75 max-w-md">
-              Drop in, call us, or book your celebration online. We'd love to hear from you.
-            </p>
-          </div>
-          <div className="relative space-y-5">
-            <div className="flex gap-4">
-              <div className="h-11 w-11 rounded-full bg-gold/20 grid place-items-center shrink-0">
-                <Phone className="h-5 w-5 text-gold" />
-              </div>
-              <div>
-                <div className="text-xs text-cream/60 uppercase tracking-wider">
-                  Call · WhatsApp
-                </div>
-                <a href="tel:6280781239" className="font-display text-xl">
-                  +91 62807 81239
-                </a>
-              </div>
-            </div>
-            <div className="flex gap-4">
-              <div className="h-11 w-11 rounded-full bg-gold/20 grid place-items-center shrink-0">
-                <MapPin className="h-5 w-5 text-gold" />
-              </div>
-              <div>
-                <div className="text-xs text-cream/60 uppercase tracking-wider">Address</div>
-                <div className="text-sm leading-relaxed">
-                  Dinanagar - Narot Jaimal Singh Rd, Near Nomani Pull, Taragarh, Punjab 143534
-                </div>
-              </div>
-            </div>
-            <div className="flex gap-4">
-              <div className="h-11 w-11 rounded-full bg-gold/20 grid place-items-center shrink-0">
-                <Clock className="h-5 w-5 text-gold" />
-              </div>
-              <div>
-                <div className="text-xs text-cream/60 uppercase tracking-wider">Open Daily</div>
-                <div className="font-display text-xl">8 AM – 9 PM</div>
-              </div>
-            </div>
-            <Link
-              to="/contact"
-              className="mt-4 inline-flex items-center gap-2 bg-gold text-chocolate px-7 py-3.5 rounded-full font-medium hover:scale-105 transition"
-            >
-              Get in touch <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-        </div>
-      </section>
+      <ContactPreviewSection />
     </>
   );
 }
