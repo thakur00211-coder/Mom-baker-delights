@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { Cake, CheckCircle2, Upload, Loader2 } from "lucide-react";
+import { Cake, Upload, Loader2 } from "lucide-react";
 import { CustomizeIntroPanel } from "@/components/customize/CustomizeIntroPanel";
+import { CakeRequestSuccess } from "@/components/customize/CakeRequestSuccess";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 
@@ -79,24 +80,15 @@ function CustomizePage() {
         <CustomizeIntroPanel />
         <div className="bg-card rounded-[2rem] p-8 sm:p-10 border border-border/60 shadow-[var(--shadow-soft)]">
           {sent ? (
-            <div className="text-center py-12">
-              <CheckCircle2 className="h-16 w-16 text-gold mx-auto mb-4" />
-              <h2 className="font-display text-2xl text-chocolate font-bold">Request received!</h2>
-              <p className="text-muted-foreground mt-2 max-w-sm mx-auto">
-                Thank you, {form.name}. Our team will call you on {form.phone} shortly to finalize
-                the details.
-              </p>
-              <button
-                onClick={() => {
-                  setSent(false);
-                  setForm({ name: "", phone: "", date: "", notes: "" });
-                  setFile(null);
-                }}
-                className="mt-6 text-gold font-medium hover:underline"
-              >
-                Send another request
-              </button>
-            </div>
+            <CakeRequestSuccess
+              name={form.name}
+              phone={form.phone}
+              onReset={() => {
+                setSent(false);
+                setForm({ name: "", phone: "", date: "", notes: "" });
+                setFile(null);
+              }}
+            />
           ) : (
             <form onSubmit={submit} className="space-y-5">
               <div className="flex items-center gap-3 mb-2">
