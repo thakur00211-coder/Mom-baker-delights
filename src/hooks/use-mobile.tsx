@@ -1,4 +1,4 @@
-// @ts-ignore
+// @ts-expect-error -- window.matchMedia typing differs during SSR
 import { useEffect, useState } from "react";
 
 const MOBILE_BREAKPOINT = 768;

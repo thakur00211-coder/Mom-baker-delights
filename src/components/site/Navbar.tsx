@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { Menu, X, Cake } from "lucide-react";
+import { Menu, X, Mail } from "lucide-react";
+
 import { cn } from "@/lib/utils";
 
 const links = [
@@ -10,75 +11,85 @@ const links = [
   { to: "/celebrate", label: "Celebrations" },
   { to: "/gallery", label: "Gallery" },
   { to: "/about", label: "About" },
-  { to: "/contact", label: "Contact" },
 ] as const;
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
+
   return (
     <header className="sticky top-0 z-40 glass-card !rounded-none border-b border-border/60">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-2 group">
-          <span className="h-9 w-9 rounded-full bg-gradient-to-br from-gold to-peach grid place-items-center shadow-[var(--shadow-glow)]">
-            <Cake className="h-5 w-5 text-chocolate" />
-          </span>
-          <span className="font-display text-xl font-bold text-chocolate tracking-tight">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+        <Link to="/" className="group flex items-center gap-3">
+          <img
+            src="/logo.png"
+            alt="Mom Bakers"
+            className="h-12 w-12 rounded-full object-cover shadow-(--shadow-soft)"
+          />
+
+          <span className="font-display text-xl font-bold tracking-tight text-chocolate">
             Mom Bakers
           </span>
         </Link>
-        <nav className="hidden lg:flex items-center gap-1">
-          {links.map((l) => (
+
+        <nav className="hidden items-center gap-1 lg:flex">
+          {links.map((link) => (
             <Link
-              key={l.to}
-              to={l.to}
-              className="px-3 py-2 text-sm font-medium text-chocolate/80 hover:text-chocolate rounded-full hover:bg-peach/30 transition-colors"
+              key={link.to}
+              to={link.to}
+              className="rounded-full px-3 py-2 text-sm font-medium text-chocolate/80 transition-colors hover:bg-peach/30 hover:text-chocolate"
               activeProps={{ className: "text-chocolate bg-peach/40" }}
-              activeOptions={{ exact: l.to === "/" }}
+              activeOptions={{ exact: link.to === "/" }}
             >
-              {l.label}
+              {link.label}
             </Link>
           ))}
         </nav>
+
         <div className="hidden lg:block">
           <Link
-            to="/customize"
-            className="inline-flex items-center gap-2 bg-chocolate text-cream px-5 py-2.5 rounded-full text-sm font-medium hover:bg-chocolate/90 transition shadow-[var(--shadow-soft)]"
+            to="/contact"
+            className="inline-flex items-center gap-2 rounded-full bg-chocolate px-6 py-2.5 text-sm font-semibold text-cream shadow-(--shadow-soft) transition-all duration-300 hover:scale-105 hover:bg-chocolate/90"
           >
-            Order a Cake
+            <Mail className="h-4 w-4" />
+            Contact Us
           </Link>
         </div>
+
         <button
-          onClick={() => setOpen((o) => !o)}
-          className="lg:hidden p-2 rounded-full hover:bg-peach/30 text-chocolate"
+          onClick={() => setOpen((current) => !current)}
+          className="rounded-full p-2 text-chocolate hover:bg-peach/30 lg:hidden"
           aria-label="Toggle menu"
         >
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
       </div>
+
       <div
         className={cn(
-          "lg:hidden overflow-hidden transition-all duration-300",
+          "overflow-hidden transition-all duration-300 lg:hidden",
           open ? "max-h-[500px]" : "max-h-0",
         )}
       >
-        <div className="px-4 pb-4 flex flex-col gap-1 bg-cream/90 border-t border-border/50">
-          {links.map((l) => (
+        <div className="flex flex-col gap-1 border-t border-border/50 bg-cream/90 px-4 pb-4">
+          {links.map((link) => (
             <Link
-              key={l.to}
-              to={l.to}
+              key={link.to}
+              to={link.to}
               onClick={() => setOpen(false)}
-              className="px-4 py-3 rounded-xl text-chocolate/80 hover:bg-peach/30 font-medium"
+              className="rounded-xl px-4 py-3 font-medium text-chocolate/80 hover:bg-peach/30"
               activeProps={{ className: "text-chocolate bg-peach/40" }}
             >
-              {l.label}
+              {link.label}
             </Link>
           ))}
+
           <Link
-            to="/customize"
+            to="/contact"
             onClick={() => setOpen(false)}
-            className="mt-2 bg-chocolate text-cream text-center px-5 py-3 rounded-full font-medium"
+            className="mt-2 flex items-center justify-center gap-2 rounded-full bg-chocolate px-5 py-3 font-medium text-cream"
           >
-            Order a Cake
+            <Mail className="h-4 w-4" />
+            Contact Us
           </Link>
         </div>
       </div>
