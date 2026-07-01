@@ -10,6 +10,7 @@ import { FeaturedMenuSection } from "@/components/home/FeaturedMenuSection";
 import { CustomizeCakeSection } from "@/components/home/CustomizeCakeSection";
 import { CelebrationsSection } from "@/components/home/CelebrationsSection";
 import { GalleryPreviewSection } from "@/components/home/GalleryPreviewSection";
+import { ReviewsSection } from "@/components/home/ReviewsSection";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -74,40 +75,7 @@ function Index() {
       <CustomizeCakeSection />
       <CelebrationsSection />
       <GalleryPreviewSection />
-
-      {/* REVIEWS */}
-      <section className="bg-gradient-to-b from-peach/20 to-cream py-20 sm:py-28">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center max-w-2xl mx-auto mb-14">
-            <p className="text-xs uppercase tracking-[0.3em] text-gold font-medium mb-3">
-              Love Notes
-            </p>
-            <h2 className="font-display text-3xl sm:text-5xl text-chocolate font-bold">
-              From families who celebrate with us
-            </h2>
-          </div>
-          <div className="grid md:grid-cols-3 gap-6">
-            {reviews.map((r) => (
-              <div
-                key={r.name}
-                className="bg-card rounded-3xl p-7 border border-border/60 shadow-[var(--shadow-soft)]"
-              >
-                <div className="flex gap-1 mb-4">
-                  {Array.from({ length: r.rating }).map((_, i) => (
-                    <Star key={i} className="h-4 w-4 fill-gold text-gold" />
-                  ))}
-                </div>
-                <p className="text-chocolate/85 leading-relaxed italic">"{r.text}"</p>
-                <div className="mt-5 pt-5 border-t border-border/60">
-                  <div className="font-semibold text-chocolate">{r.name}</div>
-                  <div className="text-xs text-muted-foreground">{r.role}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
+      <ReviewsSection />
       {/* CONTACT PREVIEW */}
       <section className="max-w-7xl mx-auto px-6 py-20 sm:py-28">
         <div className="bg-chocolate text-cream rounded-[2.5rem] p-10 sm:p-16 grid lg:grid-cols-2 gap-12 items-center relative overflow-hidden">
