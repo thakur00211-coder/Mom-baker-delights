@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { Cake, CheckCircle2, Upload, Loader2 } from "lucide-react";
-import customCake from "@/assets/custom-cake.jpg";
+import { CustomizeIntroPanel } from "@/components/customize/CustomizeIntroPanel";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 
@@ -76,22 +76,7 @@ function CustomizePage() {
   return (
     <div className="max-w-7xl mx-auto px-6 py-16 sm:py-24">
       <div className="grid lg:grid-cols-2 gap-12 items-start">
-        <div className="lg:sticky lg:top-28">
-          <p className="text-xs uppercase tracking-[0.3em] text-gold font-medium mb-3">
-            Custom Cake Studio
-          </p>
-          <h1 className="font-display text-4xl sm:text-5xl text-chocolate font-bold leading-tight">
-            Tell us about your dream cake
-          </h1>
-          <p className="mt-5 text-muted-foreground leading-relaxed">
-            Share your idea, occasion, and any inspiration image — our pastry team will reach out
-            within a few hours to craft your perfect celebration cake.
-          </p>
-          <div className="mt-8 rounded-[2rem] overflow-hidden shadow-[var(--shadow-elegant)]">
-            <img src={customCake} alt="Custom cake" loading="lazy" className="w-full" />
-          </div>
-        </div>
-
+        <CustomizeIntroPanel />
         <div className="bg-card rounded-[2rem] p-8 sm:p-10 border border-border/60 shadow-[var(--shadow-soft)]">
           {sent ? (
             <div className="text-center py-12">
