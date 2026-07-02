@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { CheckCircle2, Sparkles, Loader2 } from "lucide-react";
-import celebration from "@/assets/celebration.jpg";
+import { CheckCircle2, Loader2 } from "lucide-react";
+import { CelebrationIntroPanel } from "@/components/celebrate/CelebrationIntroPanel";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 
@@ -57,34 +57,7 @@ function CelebratePage() {
   return (
     <div className="max-w-7xl mx-auto px-6 py-16 sm:py-24">
       <div className="grid lg:grid-cols-2 gap-12 items-start">
-        <div className="lg:sticky lg:top-28">
-          <p className="text-xs uppercase tracking-[0.3em] text-gold font-medium mb-3">
-            Plan Your Celebration
-          </p>
-          <h1 className="font-display text-4xl sm:text-5xl text-chocolate font-bold leading-tight">
-            Let's make it unforgettable
-          </h1>
-          <p className="mt-5 text-muted-foreground leading-relaxed">
-            From intimate birthday parties to anniversary surprises, our team takes care of every
-            detail — décor, cake, and a warm welcome for your guests.
-          </p>
-          <div className="mt-8 rounded-[2rem] overflow-hidden shadow-[var(--shadow-elegant)]">
-            <img src={celebration} alt="Celebration setup" loading="lazy" className="w-full" />
-          </div>
-          <ul className="mt-8 grid grid-cols-2 gap-3 text-sm">
-            {[
-              "Custom cake included",
-              "Themed décor setup",
-              "Photography corner",
-              "Dedicated host",
-            ].map((p) => (
-              <li key={p} className="flex gap-2 text-chocolate/85">
-                <Sparkles className="h-4 w-4 text-gold mt-0.5" />
-                {p}
-              </li>
-            ))}
-          </ul>
-        </div>
+        <CelebrationIntroPanel />
 
         <div className="bg-card rounded-[2rem] p-8 sm:p-10 border border-border/60 shadow-[var(--shadow-soft)]">
           {sent ? (
