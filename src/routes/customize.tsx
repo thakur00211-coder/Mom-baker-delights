@@ -104,23 +104,3 @@ function CustomizePage() {
     </div>
   );
 }
-
-function Field({
-  label,
-  required,
-  children,
-}: {
-  label: string;
-  required?: boolean;
-  children: React.ReactNode;
-}) {
-  return (
-    <label className="block">
-      <span className="text-sm font-medium text-chocolate mb-1.5 block">
-        {label}
-        {required && <span className="text-gold"> *</span>}
-      </span>
-      {children}
-    </label>
-  );
-}
