@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { Cake, Upload, Loader2 } from "lucide-react";
 import { CustomizeIntroPanel } from "@/components/customize/CustomizeIntroPanel";
 import { CakeRequestSuccess } from "@/components/customize/CakeRequestSuccess";
+import { CakeRequestForm } from "@/components/customize/CakeRequestForm";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 
@@ -90,71 +90,14 @@ function CustomizePage() {
               }}
             />
           ) : (
-            <form onSubmit={submit} className="space-y-5">
-              <div className="flex items-center gap-3 mb-2">
-                <Cake className="h-6 w-6 text-gold" />
-                <h2 className="font-display text-2xl text-chocolate font-bold">Cake Inquiry</h2>
-              </div>
-              <Field label="Your Name" required>
-                <input
-                  required
-                  value={form.name}
-                  onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  className="input"
-                  placeholder="Priya Sharma"
-                />
-              </Field>
-              <Field label="Phone Number" required>
-                <input
-                  required
-                  type="tel"
-                  value={form.phone}
-                  onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                  className="input"
-                  placeholder="+91 …"
-                />
-              </Field>
-              <Field label="Preferred Date" required>
-                <input
-                  required
-                  type="date"
-                  value={form.date}
-                  onChange={(e) => setForm({ ...form, date: e.target.value })}
-                  className="input"
-                />
-              </Field>
-              <Field label="Reference Image">
-                <label className="flex items-center gap-3 px-4 py-3 rounded-2xl bg-cream/80 border border-dashed border-border cursor-pointer hover:bg-peach/20 transition">
-                  <Upload className="h-4 w-4 text-gold" />
-                  <span className="text-sm text-muted-foreground">
-                    {file?.name || "Upload inspiration image (optional)"}
-                  </span>
-                  <input
-                    type="file"
-                    accept="image/jpeg,image/png,image/webp"
-                    className="hidden"
-                    onChange={(e) => setFile(e.target.files?.[0] ?? null)}
-                  />
-                </label>
-              </Field>
-              <Field label="Notes & Flavor Preferences">
-                <textarea
-                  rows={4}
-                  value={form.notes}
-                  onChange={(e) => setForm({ ...form, notes: e.target.value })}
-                  className="input resize-none"
-                  placeholder="Tell us about the occasion, theme, flavor, dietary needs…"
-                />
-              </Field>
-              <button
-                type="submit"
-                disabled={submitting}
-                className="w-full bg-chocolate text-cream py-4 rounded-full font-medium hover:bg-chocolate/90 transition shadow-[var(--shadow-soft)] disabled:opacity-60 inline-flex items-center justify-center gap-2"
-              >
-                {submitting && <Loader2 className="h-4 w-4 animate-spin" />}
-                {submitting ? "Sending…" : "Send Cake Request"}
-              </button>
-            </form>
+            <CakeRequestForm
+              form={form}
+              file={file}
+              submitting={submitting}
+              onSubmit={submit}
+              onFormChange={setForm}
+              onFileChange={setFile}
+            />
           )}
         </div>
       </div>
