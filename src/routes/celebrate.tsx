@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { CheckCircle2, Loader2 } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import { CelebrationIntroPanel } from "@/components/celebrate/CelebrationIntroPanel";
+import { CelebrationRequestSuccess } from "@/components/celebrate/CelebrationRequestSuccess";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 
@@ -61,14 +62,7 @@ function CelebratePage() {
 
         <div className="bg-card rounded-[2rem] p-8 sm:p-10 border border-border/60 shadow-[var(--shadow-soft)]">
           {sent ? (
-            <div className="text-center py-12">
-              <CheckCircle2 className="h-16 w-16 text-gold mx-auto mb-4" />
-              <h2 className="font-display text-2xl text-chocolate font-bold">Request received!</h2>
-              <p className="text-muted-foreground mt-2 max-w-sm mx-auto">
-                Thank you, {form.name}. We'll call you on {form.phone} to plan your{" "}
-                {form.type.toLowerCase()}.
-              </p>
-            </div>
+            <CelebrationRequestSuccess name={form.name} phone={form.phone} eventType={form.type} />
           ) : (
             <form onSubmit={submit} className="space-y-5">
               <h2 className="font-display text-2xl text-chocolate font-bold">
