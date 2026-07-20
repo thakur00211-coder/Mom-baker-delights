@@ -1,10 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
-import { PartyPopper, Search, Phone, CalendarDays, Users, Loader2, RefreshCw } from "lucide-react";
+import { PartyPopper, Search, Phone, CalendarDays, Users, Loader2 } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { CelebrationRequestsHeader } from "@/components/admin/celebration-requests/CelebrationRequestsHeader";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
@@ -87,51 +88,13 @@ function CelebrationRequestsPage() {
 
   return (
     <>
-      <Card className="p-6 md:p-7 rounded-3xl border-border/60 bg-gradient-to-br from-[var(--peach)]/20 via-background to-[var(--gold)]/10 shadow-[var(--shadow-soft)]">
-        <div className="flex flex-wrap items-start justify-between gap-4">
-          <div className="flex items-center gap-4 min-w-0">
-            <span className="h-12 w-12 rounded-2xl bg-gradient-to-br from-[var(--gold)] to-[var(--peach)] grid place-items-center shadow-[var(--shadow-soft)] shrink-0">
-              <PartyPopper className="h-5 w-5 text-[var(--chocolate)]" />
-            </span>
-            <div className="min-w-0">
-              <div className="text-[11px] uppercase tracking-[0.2em] text-[var(--chocolate)]/70">
-                Event Bookings
-              </div>
-              <h2 className="font-display text-2xl font-bold text-[var(--chocolate)]">
-                Celebration Requests
-              </h2>
-              <p className="text-sm text-[var(--chocolate)]/70 mt-1">
-                Plan birthdays, anniversaries, and special events.
-              </p>
-            </div>
-          </div>
-          <Button variant="outline" size="sm" onClick={load} disabled={loading}>
-            <RefreshCw className={cn("h-4 w-4 mr-1.5", loading && "animate-spin")} />
-            Refresh
-          </Button>
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mt-6">
-          {(["Total", "Pending", "Contacted", "Accepted", "Rejected"] as const).map((k) => (
-            <button
-              key={k}
-              type="button"
-              onClick={() => setStatusFilter(k === "Total" ? "All" : (k as Status))}
-              className={cn(
-                "rounded-2xl bg-background/70 border border-border/60 px-4 py-3 text-left transition hover:border-[var(--gold)]/60",
-                ((k === "Total" && statusFilter === "All") || statusFilter === k) &&
-                  "border-[var(--gold)] bg-[var(--gold)]/10",
-              )}
-            >
-              <div className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
-                {k}
-              </div>
-              <div className="font-display text-2xl font-bold text-[var(--chocolate)] mt-1">
-                {counts[k]}
-              </div>
-            </button>
-          ))}
-        </div>
-      </Card>
+      <CelebrationRequestsHeader
+        counts={counts}
+        loading={loading}
+        statusFilter={statusFilter}
+        onRefresh={load}
+        onStatusFilterChange={setStatusFilter}
+      />
 
       <Card className="rounded-3xl border-border/60 overflow-hidden">
         <div className="px-5 md:px-6 py-4 border-b border-border/60 flex flex-wrap items-center justify-between gap-3">
